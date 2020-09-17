@@ -29,3 +29,10 @@ describe docker_container('container') do
   its('tag') { should eq 'latest' }
   its('ports') { should include '0.0.0.0:5000->5000/tcp' }
 end
+
+# docker pull hello-world
+# docker tag hello-world localhost:5000/hello-world:latest
+# docker images
+# docker push localhost:5000/hello-world:latest
+# docker images
+# curl -X GET http://localhost:5000/v2/_catalog
