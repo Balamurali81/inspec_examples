@@ -15,9 +15,13 @@ describe docker.version do
   its('Server.Version') { should cmp >= "19.03"}
 end
 
-describe docker.object("c24a42790352") do
+describe docker.object("c24a42790352") do # container ID needs to be changed
   its('ResolvConfPath') { should match '/var/lib/docker/containers/*'}
 end
+
+puts command('docker tag registry:latest localhost:5000/docker_registery_piper1185:latest').stderr
+puts command('docker push localhost:5000/docker_registry:latest').stderr
+puts command('curl -X GET http://localhost:5000/v2/_catalog').stderr
 
 ================= single describe===========
 describe docker_container('container') do
